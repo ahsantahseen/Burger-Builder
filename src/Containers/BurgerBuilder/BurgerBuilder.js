@@ -16,8 +16,19 @@ export default class BurgerBuilder extends Component {
       cheese: 0,
     },
     Total_Price: 4.0,
+    purchaseable: false,
   };
   render() {
+    const OrderButtonHandler = (ingredients) => {
+      const sum = Object.keys(ingredients)
+        .map((igKey) => {
+          return ingredients[igKey];
+        })
+        .reduce((sum, el) => {
+          return sum + el;
+        }, 0);
+      this.setState({ purchaseable: sum > 0 });
+    };
     const AddIngredientHandler = (type) => {
       const oldCount = this.state.Ingredients[type];
       const UpdatedCount = oldCount + 1;
@@ -30,6 +41,7 @@ export default class BurgerBuilder extends Component {
         Ingredients: UpdatedIngredients,
         Total_Price: UpdatedPrice,
       });
+      OrderButtonHandler(UpdatedIngredients);
     };
     const RemoveIngredientHandler = (type) => {
       const oldCount = this.state.Ingredients[type];
@@ -46,6 +58,8 @@ export default class BurgerBuilder extends Component {
         Ingredients: UpdatedIngredients,
         Total_Price: UpdatedPrice,
       });
+
+      OrderButtonHandler(UpdatedIngredients);
     };
     const disabledButtoninfo = {
       ...this.state.Ingredients,
@@ -60,6 +74,8 @@ export default class BurgerBuilder extends Component {
           AddIng={AddIngredientHandler}
           RemoveIng={RemoveIngredientHandler}
           disabled={disabledButtoninfo}
+          price={this.state.Total_Price}
+          purchaseable={this.state.purchaseable}
         ></BurgerBuildControls>
       </Auxiliary>
     );

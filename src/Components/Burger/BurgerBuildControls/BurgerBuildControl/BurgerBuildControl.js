@@ -2,7 +2,7 @@ import React from "react";
 import classes from "../BurgerBuildControl/BurgerBuildControl.module.css";
 
 const BurgerBuildControl = (props) => {
-  console.log(props.disableBtn);
+ 
   return (
     <div className={classes.BuildControl}>
       <div className={classes.Label}>{props.label}</div>
