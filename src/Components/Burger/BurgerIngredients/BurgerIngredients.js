@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import classes from "../BurgerIngredients/BurgerIngredients.module.css";
 import PropTypes from "prop-types";
 
+
+
 class BurgerIngredients extends Component {
   render() {
     let indgredient = null;
