@@ -47,16 +47,19 @@ export default class BurgerBuilder extends Component {
         Total_Price: UpdatedPrice,
       });
     };
-    const disabledButtoninfo={
-      ...this.st
+    const disabledButtoninfo = {
+      ...this.state.Ingredients,
+    };
+    for (let key in disabledButtoninfo) {
+      disabledButtoninfo[key] = disabledButtoninfo[key] <= 0;
     }
-
     return (
       <Auxiliary>
         <Burger ingredients={this.state.Ingredients} />
         <BurgerBuildControls
           AddIng={AddIngredientHandler}
           RemoveIng={RemoveIngredientHandler}
+          disabled={disabledButtoninfo}
         ></BurgerBuildControls>
       </Auxiliary>
     );

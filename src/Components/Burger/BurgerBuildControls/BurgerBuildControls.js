@@ -24,6 +24,7 @@ const BurgerBuildControls = (props) => {
           type={ctrl.type}
           addIngdrientFunc={() => props.AddIng(ctrl.type)}
           removeIngdrientFunc={() => props.RemoveIng(ctrl.type)}
+          disabled={props.disabled[ctrl.type]}
         ></BurgerBuildControl>
       ))}
     </div>
