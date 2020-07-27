@@ -2,7 +2,7 @@ import React from "react";
 import Auxiliary from "../../../hoc/Auxiliary";
 import Button from "../../UI/Button/Button";
 
-const words = ["Tremdous", "Excellent", "Beautiful"];
+const words = ["Tremdous", "Excellent", "Beautiful", "Tasty", "Wonderful"];
 
 export const OrderSummary = (props) => {
   const ingredientsSummary = Object.keys(props.ingredients).map((igKey) => {
