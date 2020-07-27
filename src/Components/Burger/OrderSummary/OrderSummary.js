@@ -2,11 +2,13 @@ import React from "react";
 import Auxiliary from "../../../hoc/Auxiliary";
 import Button from "../../UI/Button/Button";
 
+const words = ["Tremdous", "Excellent", "Beautiful"];
+
 export const OrderSummary = (props) => {
   const ingredientsSummary = Object.keys(props.ingredients).map((igKey) => {
     return (
       <li style={{ lineHeight: 1.4 }} key={igKey}>
-        <span style={{ textTransform: "capitalize" }}>{igKey}</span>:
+        <span style={{ textTransform: "capitalize" }}>{igKey}</span>:{" "}
         {props.ingredients[igKey]}
       </li>
     );
@@ -14,20 +16,27 @@ export const OrderSummary = (props) => {
 
   return (
     <Auxiliary>
-      <h3>Your Order</h3>
-      <h4>Delicious Burger with Following ingredients:</h4>
+      <p>
+        <strong>Order Summary</strong>
+      </p>
+      <p>
+        You have made a {words[Math.floor(Math.random() * words.length)]} with
+        Following ingredients:
+      </p>
       <ul
         style={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
+          justifyContent: "space-evenly",
           alignItems: "flex-start",
         }}
       >
         {ingredientsSummary}
       </ul>
-      <h4>Total Amount: {props.price} $ </h4>
-      <h4>Continue to Checkout?</h4>
+      <p>
+        <strong>Total Amount: {props.price.toFixed(2)} $</strong>
+      </p>
+      <p>Continue to Checkout?</p>
       <Button clicked={props.cancelBtnClicked} Btntype="Danger">
         Cancel
       </Button>
