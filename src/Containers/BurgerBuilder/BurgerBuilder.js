@@ -24,6 +24,9 @@ export default class BurgerBuilder extends Component {
   enablePurchasing = () => {
     this.setState({ purchasing: true });
   };
+  cancelenablePurchasing = () => {
+    this.setState({ purchasing: false });
+  };
   render() {
     const OrderButtonHandler = (ingredients) => {
       const sum = Object.keys(ingredients)
@@ -75,7 +78,10 @@ export default class BurgerBuilder extends Component {
     }
     return (
       <Auxiliary>
-        <Modal show={this.state.purchasing}>
+        <Modal
+          show={this.state.purchasing}
+          clicked={this.cancelenablePurchasing}
+        >
           <OrderSummary ingredients={this.state.Ingredients}></OrderSummary>
         </Modal>
         <Burger ingredients={this.state.Ingredients} />
