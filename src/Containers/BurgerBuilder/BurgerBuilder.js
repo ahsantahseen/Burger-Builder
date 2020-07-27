@@ -27,6 +27,10 @@ export default class BurgerBuilder extends Component {
   cancelenablePurchasing = () => {
     this.setState({ purchasing: false });
   };
+
+  continuePurchasing = () => {
+    alert("Proceeding to checkout...");
+  };
   render() {
     const OrderButtonHandler = (ingredients) => {
       const sum = Object.keys(ingredients)
@@ -82,7 +86,12 @@ export default class BurgerBuilder extends Component {
           show={this.state.purchasing}
           clicked={this.cancelenablePurchasing}
         >
-          <OrderSummary ingredients={this.state.Ingredients}></OrderSummary>
+          <OrderSummary
+            ingredients={this.state.Ingredients}
+            cancelBtnClicked={this.cancelenablePurchasing}
+            continueBtnClicked={this.continuePurchasing}
+            price={this.state.Total_Price}
+          ></OrderSummary>
         </Modal>
         <Burger ingredients={this.state.Ingredients} />
         <BurgerBuildControls
