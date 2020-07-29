@@ -20,7 +20,7 @@ export const OrderSummary = (props) => {
         <strong>Order Summary</strong>
       </p>
       <p>
-        You have made a {words[Math.floor(Math.random() * words.length)]} 
+        You have made a {words[Math.floor(Math.random() * words.length)]} using
         Following ingredients:
       </p>
       <ul
