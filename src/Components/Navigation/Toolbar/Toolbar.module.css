@@ -16,9 +16,17 @@
 .Toolbar nav {
   height: 100%;
 }
-
+.Toolbar img:active {
+  background-color: rgba(0, 0, 0, 0.5); 
+}
 @media (max-width: 499px) {
   .DesktopOnly {
+    display: none;
+  }
+}
+
+@media (min-width: 499px) {
+  .Toolbar img {
     display: none;
   }
 }

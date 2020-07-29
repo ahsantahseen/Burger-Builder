@@ -5,14 +5,14 @@ import Toolbar from "../Navigation/Toolbar/Toolbar";
 import SideToolBar from "../Navigation/SideToolBar/SideToolBar";
 
 export const Layout = (props) => {
-  const [showSideToolbar, setshowSideToolbar] = useState(true);
+  const [showSideToolbar, setshowSideToolbar] = useState(false);
 
   const SideToolBarCloseHandler = () => {
-    setshowSideToolbar(false);
+    setshowSideToolbar(!showSideToolbar);
   };
   return (
     <Auxiliary>
-      <Toolbar></Toolbar>
+      <Toolbar clicked={SideToolBarCloseHandler}></Toolbar>
       <SideToolBar
         show={showSideToolbar}
         clicked={SideToolBarCloseHandler}

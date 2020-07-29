@@ -25,3 +25,9 @@
 .Close {
   transform: translateX(-100%);
 }
+
+.text {
+  color: black;
+  text-decoration: underline;
+  padding: 10px;
+}
