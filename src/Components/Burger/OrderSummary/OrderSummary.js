@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Auxiliary from "../../../hoc/Auxiliary";
 import Button from "../../UI/Button/Button";
 
@@ -12,6 +12,10 @@ export const OrderSummary = (props) => {
         {props.ingredients[igKey]}
       </li>
     );
+  });
+
+  useEffect(() => {
+    console.log("order summary re rendered");
   });
 
   return (

@@ -19,4 +19,8 @@ const Modal = (props) => {
     </Auxiliary>
   );
 };
-export default Modal;
+
+const CheckingFunction = (prevProps, nextProps) => {
+  return prevProps.show === nextProps.show;
+};
+export default React.memo(Modal, CheckingFunction);
