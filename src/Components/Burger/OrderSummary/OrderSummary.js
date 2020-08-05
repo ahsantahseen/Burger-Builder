@@ -15,7 +15,7 @@ export const OrderSummary = (props) => {
   });
 
   useEffect(() => {
-    console.log("order summary re rendered");
+    console.log("[OrderSummary.JS] Rendered");
   });
 
   return (

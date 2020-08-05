@@ -1,9 +1,13 @@
-import React from "react";
+import React,{useEffect} from "react";
 import classes from "./Modal.module.css";
 import Auxiliary from "../../../hoc/Auxiliary";
 import Backdrop from "../Backdrop/Backdrop";
 
 const Modal = (props) => {
+  
+  useEffect(() => {
+    console.log("[MODAL.JS] RENDERED");
+  });
   return (
     <Auxiliary>
       <Backdrop clicked={props.clicked} show={props.show}></Backdrop>
