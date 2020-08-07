@@ -4,6 +4,7 @@ import Burger from "../../Components/Burger/Burger";
 import BurgerBuildControls from "../../Components/Burger/BurgerBuildControls/BurgerBuildControls";
 import Modal from "../../Components/UI/Modal/Modal";
 import { OrderSummary } from "../../Components/Burger/OrderSummary/OrderSummary";
+import Spinner from "../../Components/UI/Spinnner/Spinner";
 import axios from "../../orders-axios";
 
 const dummy_names = ["Ali", "Amin", "Bilal", "Ahsan", "Tahseen", "Tabassum"];
@@ -32,6 +33,7 @@ export default class BurgerBuilder extends Component {
     Total_Price: 1.0,
     purchaseable: false,
     purchasing: false,
+    loading: false,
   };
   enablePurchasing = () => {
     this.setState({ purchasing: true });
@@ -41,9 +43,10 @@ export default class BurgerBuilder extends Component {
   };
 
   continuePurchasing = () => {
+    this.setState({ loading: true });
     const customerOrders = {
       ingredients: this.state.Ingredients,
-      Total_Price: this.state.Total_Price,
+      Total_Price: this.state.Total_Price + "$",
       customer_details: {
         name: dummy_names[Math.floor(Math.random() * dummy_names.length)],
         location:
@@ -57,11 +60,10 @@ export default class BurgerBuilder extends Component {
         ],
     };
 
-    alert("Parsing to database....");
     axios
       .post("customerOrders.json", customerOrders)
-      .then((Response) => console.log(Response))
-      .catch((error) => console.error());
+      .then((Response) => this.setState({ loading: false, purchasing: false }))
+      .catch((error) => this.setState({ loading: false, purchasing: false }));
   };
   render() {
     const OrderButtonHandler = (ingredients) => {
@@ -112,18 +114,25 @@ export default class BurgerBuilder extends Component {
     for (let key in disabledButtoninfo) {
       disabledButtoninfo[key] = disabledButtoninfo[key] <= 0;
     }
+    let DisplayScreen = (
+      <OrderSummary
+        ingredients={this.state.Ingredients}
+        cancelBtnClicked={this.cancelenablePurchasing}
+        continueBtnClicked={this.continuePurchasing}
+        price={this.state.Total_Price}
+      ></OrderSummary>
+    );
+    if (this.state.loading) {
+      DisplayScreen = <Spinner></Spinner>;
+    }
+
     return (
       <Auxiliary>
         <Modal
           show={this.state.purchasing}
           clicked={this.cancelenablePurchasing}
         >
-          <OrderSummary
-            ingredients={this.state.Ingredients}
-            cancelBtnClicked={this.cancelenablePurchasing}
-            continueBtnClicked={this.continuePurchasing}
-            price={this.state.Total_Price}
-          ></OrderSummary>
+          {DisplayScreen}
         </Modal>
         <Burger ingredients={this.state.Ingredients} />
         <BurgerBuildControls

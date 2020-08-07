@@ -1,10 +1,9 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import classes from "./Modal.module.css";
 import Auxiliary from "../../../hoc/Auxiliary";
 import Backdrop from "../Backdrop/Backdrop";
 
 const Modal = (props) => {
-  
   useEffect(() => {
     console.log("[MODAL.JS] RENDERED");
   });
@@ -25,6 +24,9 @@ const Modal = (props) => {
 };
 
 const CheckingFunction = (prevProps, nextProps) => {
-  return prevProps.show === nextProps.show;
+  return (
+    prevProps.show === nextProps.show ||
+    prevProps.children === nextProps.children
+  );
 };
 export default React.memo(Modal, CheckingFunction);
