@@ -4,7 +4,19 @@ import Burger from "../../Components/Burger/Burger";
 import BurgerBuildControls from "../../Components/Burger/BurgerBuildControls/BurgerBuildControls";
 import Modal from "../../Components/UI/Modal/Modal";
 import { OrderSummary } from "../../Components/Burger/OrderSummary/OrderSummary";
+import axios from "../../orders-axios";
 
+const dummy_names = ["Ali", "Amin", "Bilal", "Ahsan", "Tahseen", "Tabassum"];
+const dummy_location = [
+  "Karachi-FB AREA",
+  "Karachi-Saddar",
+  "Karachi-Clifton",
+  "Karachi-PECHS",
+  "Karachi-Nursery",
+];
+const dummy_numbers = ["052523", "525251", "145523", "123453", "435355"];
+
+const dummy_delivery_type = ["Fastest", "Normal", "Urgent", "Casual"];
 const INGREDIENTS_PRICE = {
   salad: 0.3,
   cheese: 0.5,
@@ -29,7 +41,27 @@ export default class BurgerBuilder extends Component {
   };
 
   continuePurchasing = () => {
-    alert("Proceeding to checkout...");
+    const customerOrders = {
+      ingredients: this.state.Ingredients,
+      Total_Price: this.state.Total_Price,
+      customer_details: {
+        name: dummy_names[Math.floor(Math.random() * dummy_names.length)],
+        location:
+          dummy_location[Math.floor(Math.random() * dummy_location.length)],
+        contact_number:
+          dummy_numbers[Math.floor(Math.random() * dummy_numbers.length)],
+      },
+      delivery_type:
+        dummy_delivery_type[
+          Math.floor(Math.random() * dummy_delivery_type.length)
+        ],
+    };
+
+    alert("Parsing to database....");
+    axios
+      .post("customerOrders.json", customerOrders)
+      .then((Response) => console.log(Response))
+      .catch((error) => console.error());
   };
   render() {
     const OrderButtonHandler = (ingredients) => {
