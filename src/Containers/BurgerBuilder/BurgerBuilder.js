@@ -24,10 +24,12 @@ const INGREDIENTS_PRICE = {
   cheese: 0.5,
   meat: 1.4,
 };
+
 class BurgerBuilder extends Component {
   state = {
     Ingredients: null,
     Total_Price: 1.0,
+    Date: null,
     purchaseable: false,
     purchasing: false,
     loading: false,
@@ -36,7 +38,7 @@ class BurgerBuilder extends Component {
   componentDidMount() {
     console.log("COMPONENT MOUTNED!");
     axios
-      .get("ingredients")
+      .get("ingredients.json")
       .then((Response) => {
         this.setState({ Ingredients: Response.data });
         console.log(this.state.Ingredients);
@@ -65,10 +67,12 @@ class BurgerBuilder extends Component {
         contact_number:
           dummy_numbers[Math.floor(Math.random() * dummy_numbers.length)],
       },
+
       delivery_type:
         dummy_delivery_type[
           Math.floor(Math.random() * dummy_delivery_type.length)
         ],
+      delivery_date: this.state.Date,
     };
 
     axios
@@ -78,6 +82,7 @@ class BurgerBuilder extends Component {
   };
   render() {
     const OrderButtonHandler = (ingredients) => {
+      this.setState({ Date: new Date().toLocaleString() });
       const sum = Object.keys(ingredients)
         .map((igKey) => {
           return ingredients[igKey];
