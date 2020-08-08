@@ -1,4 +1,4 @@
-    import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Auxiliary from "../Auxiliary";
 import Modal from "../../Components/UI/Modal/Modal";

@@ -26,16 +26,21 @@ const INGREDIENTS_PRICE = {
 };
 class BurgerBuilder extends Component {
   state = {
-    Ingredients: {
-      salad: 0,
-      meat: 0,
-      cheese: 0,
-    },
+    Ingredients: null,
     Total_Price: 1.0,
     purchaseable: false,
     purchasing: false,
     loading: false,
   };
+
+  componentDidMount() {
+    axios
+      .get("https://burger-builder-database-8704b.firebaseio.com/ingredients")
+      .then((Response) => {
+        this.setState({ Ingredients: Response.data });
+      });
+  }
+
   enablePurchasing = () => {
     this.setState({ purchasing: true });
   };
@@ -127,6 +132,22 @@ class BurgerBuilder extends Component {
       DisplayScreen = <Spinner></Spinner>;
     }
 
+    let DisplayBurger = <Spinner></Spinner>;
+    if (this.state.Ingredients) {
+      DisplayBurger = (
+        <Auxiliary>
+          <Burger ingredients={this.state.Ingredients} />
+          <BurgerBuildControls
+            AddIng={AddIngredientHandler}
+            RemoveIng={RemoveIngredientHandler}
+            disabled={disabledButtoninfo}
+            price={this.state.Total_Price}
+            purchaseable={this.state.purchaseable}
+            purchasing={this.enablePurchasing}
+          ></BurgerBuildControls>
+        </Auxiliary>
+      );
+    }
     return (
       <Auxiliary>
         <Modal
@@ -135,15 +156,7 @@ class BurgerBuilder extends Component {
         >
           {DisplayScreen}
         </Modal>
-        <Burger ingredients={this.state.Ingredients} />
-        <BurgerBuildControls
-          AddIng={AddIngredientHandler}
-          RemoveIng={RemoveIngredientHandler}
-          disabled={disabledButtoninfo}
-          price={this.state.Total_Price}
-          purchaseable={this.state.purchaseable}
-          purchasing={this.enablePurchasing}
-        ></BurgerBuildControls>
+        {DisplayBurger}
       </Auxiliary>
     );
   }
