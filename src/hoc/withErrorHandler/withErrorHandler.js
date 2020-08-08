@@ -21,7 +21,8 @@ const withErrorHandler = (WrappedComponent, axios) => {
         seterror(error);
         return Response;
       });
-    });
+    }, []);
+
     const errorConfirmedHandler = () => {
       seterror(null);
     };

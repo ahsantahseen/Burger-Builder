@@ -34,10 +34,15 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount() {
+    console.log("COMPONENT MOUTNED!");
     axios
-      .get("https://burger-builder-database-8704b.firebaseio.com/ingredients")
+      .get("ingredients")
       .then((Response) => {
         this.setState({ Ingredients: Response.data });
+        console.log(this.state.Ingredients);
+      })
+      .catch((Error) => {
+        console.log(Error.message);
       });
   }
 
@@ -67,7 +72,7 @@ class BurgerBuilder extends Component {
     };
 
     axios
-      .post("customerOrders", customerOrders)
+      .post("customerOrders.json", customerOrders)
       .then((Response) => this.setState({ loading: false, purchasing: false }))
       .catch((error) => this.setState({ loading: false, purchasing: false }));
   };
@@ -120,18 +125,8 @@ class BurgerBuilder extends Component {
     for (let key in disabledButtoninfo) {
       disabledButtoninfo[key] = disabledButtoninfo[key] <= 0;
     }
-    let DisplayScreen = (
-      <OrderSummary
-        ingredients={this.state.Ingredients}
-        cancelBtnClicked={this.cancelenablePurchasing}
-        continueBtnClicked={this.continuePurchasing}
-        price={this.state.Total_Price}
-      ></OrderSummary>
-    );
-    if (this.state.loading) {
-      DisplayScreen = <Spinner></Spinner>;
-    }
 
+    let DisplayScreen = null;
     let DisplayBurger = <Spinner></Spinner>;
     if (this.state.Ingredients) {
       DisplayBurger = (
@@ -147,7 +142,20 @@ class BurgerBuilder extends Component {
           ></BurgerBuildControls>
         </Auxiliary>
       );
+
+      DisplayScreen = (
+        <OrderSummary
+          ingredients={this.state.Ingredients}
+          cancelBtnClicked={this.cancelenablePurchasing}
+          continueBtnClicked={this.continuePurchasing}
+          price={this.state.Total_Price}
+        ></OrderSummary>
+      );
     }
+    if (this.state.loading) {
+      DisplayScreen = <Spinner></Spinner>;
+    }
+
     return (
       <Auxiliary>
         <Modal
