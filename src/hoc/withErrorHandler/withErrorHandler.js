@@ -1,21 +1,25 @@
-import React, { useState, useEffect, useRef, createRef } from "react";
+import React, { useState, useEffect } from "react";
 import Auxiliary from "../Auxiliary";
 import Modal from "../../Components/UI/Modal/Modal";
 
 const withErrorHandler = (WrappedComponent, axios) => {
   return (props) => {
-    console.log("ERROR HANDLER RENDERED");
-    let [error, seterror] = useState(null);
+    //console.log("ERROR HANDLER RENDERED");
 
+    const [error, seterror] = useState(null);
     useEffect(() => {
       let reqInterceptors = axios.interceptors.request.use((req) => {
         seterror(null);
+        console.log(req);
         return req;
       });
       let resInterceptors = axios.interceptors.response.use(
-        (res) => res,
+        (res) => {
+          console.log(res);
+        },
         (error) => {
           seterror(error);
+          console.log(error);
         }
       );
       return () => {

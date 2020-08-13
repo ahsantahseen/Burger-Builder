@@ -43,8 +43,8 @@ class BurgerBuilder extends Component {
         this.setState({ Ingredients: Response.data });
         console.log(this.state.Ingredients);
       })
-      .catch((Error) => {
-        console.log(Error.message);
+      .catch((error) => {
+        console.log(error.message);
       });
   }
 
