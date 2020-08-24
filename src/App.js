@@ -20,7 +20,6 @@ class App extends Component {
       <div className="App">
         <Layout>
           {this.state.show ? <BurgerBuilder></BurgerBuilder> : <Spinner />}
-          <Checkout></Checkout>
         </Layout>
       </div>
     );
