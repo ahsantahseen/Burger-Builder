@@ -3,7 +3,7 @@ import CheckoutSummary from "../../Components/Order/CheckoutSummary/CheckoutSumm
 import { withRouter } from "react-router-dom";
 
 class Checkout extends Component {
-  componentDidMount() {}
+  
   state = {
     ingredients: {
       salad: 1,
@@ -11,6 +11,9 @@ class Checkout extends Component {
       cheese: 1,
     },
   };
+  componentDidMount() {
+   const query 
+  }
   checkoutCancelledHandler = () => {
     this.props.history.goBack();
   };
@@ -24,8 +27,8 @@ class Checkout extends Component {
       <div>
         <CheckoutSummary
           ingredients={this.state.ingredients}
-          checkoutContinue={this.checkoutContinueHandler()}
-          checkoutCancelled={this.checkoutCancelledHandler()}
+          checkoutContinue={this.checkoutContinueHandler}
+          checkoutCancelled={this.checkoutCancelledHandler}
         ></CheckoutSummary>
       </div>
     );
