@@ -3,6 +3,9 @@
   width: 80%;
   text-align: center;
 }
+.Input {
+  display: block;
+}
 @media (min-width: 600px) {
   .contact_data {
     min-width: 500px;
