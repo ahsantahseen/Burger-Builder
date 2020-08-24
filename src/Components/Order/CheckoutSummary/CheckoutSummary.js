@@ -11,7 +11,7 @@ const OrderSummary = (props) => {
         <Burger ingredients={props.ingredients}></Burger>
       </div>
       <Button Btntype="Danger" clicked={props.checkoutCancelled}>
-        CANCEL
+        Cancel
       </Button>
 
       <Button Btntype="Success" clicked={props.checkoutContinue}>
