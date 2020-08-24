@@ -3,8 +3,6 @@ import Burger from "../../Burger/Burger";
 import Button from "../../UI/Button/Button";
 import classes from "./CheckoutSummary.module.css";
 
-import { withRouter } from "react-router-dom";
-
 const OrderSummary = (props) => {
   return (
     <div className={classes.CheckoutSummary}>
@@ -12,13 +10,15 @@ const OrderSummary = (props) => {
       <div style={{ width: "100%", margin: "auto" }}>
         <Burger ingredients={props.ingredients}></Burger>
       </div>
-      <Button Btntype="Danger">CANCEL</Button>
+      <Button Btntype="Danger" clicked={props.checkoutCancelled}>
+        CANCEL
+      </Button>
 
-      <Button Btntype="Success" clicked>
+      <Button Btntype="Success" clicked={props.checkoutContinue}>
         Continue
       </Button>
     </div>
   );
 };
 
-export default withRouter(OrderSummary);
+export default OrderSummary;
