@@ -3,9 +3,9 @@ import classes from "./footerbar.module.css";
 
 const Footerbar = () => {
   return (
-    <div className={classes.footerbar}>
+    <footer className={classes.footerbar}>
       <p>Made by Ahsan Tahseen, Powered By React</p>
-    </div>
+    </footer>
   );
 };
 
