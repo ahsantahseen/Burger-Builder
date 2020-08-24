@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import OrderSummary from "../../Components/Order/OrderSummary/OrderSummary";
+import { withRouter } from "react-router-dom";
 
 class Checkout extends Component {
+  componentDidMount() {}
   state = {
     ingredients: {
       salad: 1,
@@ -17,4 +19,4 @@ class Checkout extends Component {
     );
   }
 }
-export default Checkout;
+export default withRouter(Checkout);

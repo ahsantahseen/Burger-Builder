@@ -7,6 +7,7 @@ import { OrderSummary } from "../../Components/Burger/OrderSummary/OrderSummary"
 import Spinner from "../../Components/UI/Spinnner/Spinner";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import axios from "../../orders-axios";
+import { withRouter } from "react-router-dom";
 
 const dummy_names = ["Ali", "Amin", "Bilal", "Ahsan", "Tahseen", "Tabassum"];
 const dummy_location = [
@@ -36,7 +37,6 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount() {
-    console.log("COMPONENT MOUTNED!");
     axios
       .get("ingredients.json")
       .then((Response) => {
@@ -56,29 +56,30 @@ class BurgerBuilder extends Component {
   };
 
   continuePurchasing = () => {
-    this.setState({ loading: true });
-    const customerOrders = {
-      ingredients: this.state.Ingredients,
-      Total_Price: this.state.Total_Price + "$",
-      customer_details: {
-        name: dummy_names[Math.floor(Math.random() * dummy_names.length)],
-        location:
-          dummy_location[Math.floor(Math.random() * dummy_location.length)],
-        contact_number:
-          dummy_numbers[Math.floor(Math.random() * dummy_numbers.length)],
-      },
+    // this.setState({ loading: true });
+    // const customerOrders = {
+    //   ingredients: this.state.Ingredients,
+    //   Total_Price: this.state.Total_Price + "$",
+    //   customer_details: {
+    //     name: dummy_names[Math.floor(Math.random() * dummy_names.length)],
+    //     location:
+    //       dummy_location[Math.floor(Math.random() * dummy_location.length)],
+    //     contact_number:
+    //       dummy_numbers[Math.floor(Math.random() * dummy_numbers.length)],
+    //   },
 
-      delivery_type:
-        dummy_delivery_type[
-          Math.floor(Math.random() * dummy_delivery_type.length)
-        ],
-      delivery_date: this.state.Date,
-    };
+    //   delivery_type:
+    //     dummy_delivery_type[
+    //       Math.floor(Math.random() * dummy_delivery_type.length)
+    //     ],
+    //   delivery_date: this.state.Date,
+    // };
 
-    axios
-      .post("customerOrders.json", customerOrders)
-      .then((Response) => this.setState({ loading: false, purchasing: false }))
-      .catch((error) => this.setState({ loading: false, purchasing: false }));
+    // axios
+    //   .post("customerOrders.json", customerOrders)
+    //   .then((Response) => this.setState({ loading: false, purchasing: false }))
+    //   .catch((error) => this.setState({ loading: false, purchasing: false }));
+    this.props.history.push("/checkout");
   };
   render() {
     const OrderButtonHandler = (ingredients) => {
@@ -175,4 +176,4 @@ class BurgerBuilder extends Component {
   }
 }
 
-export default withErrorHandler(BurgerBuilder, axios);
+export default withRouter(withErrorHandler(BurgerBuilder, axios));
