@@ -4,6 +4,7 @@ import Layout from "../src/Components/Layout/Layout";
 import BurgerBuilder from "../src/Containers/BurgerBuilder/BurgerBuilder";
 import Spinner from "./Components/UI/Spinnner/Spinner";
 import Checkout from "./Containers/Checkout/Checkout";
+import { Route, Switch } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -19,7 +20,16 @@ class App extends Component {
     return (
       <div className="App">
         <Layout>
-          {this.state.show ? <BurgerBuilder></BurgerBuilder> : <Spinner />}
+          <Switch>
+            <Route
+              to="/"
+              exact
+              component={
+                this.state.show ? <BurgerBuilder></BurgerBuilder> : <Spinner />
+              }
+            ></Route>
+            <Route to="/checkout" exact component={Checkout}></Route>
+          </Switch>
         </Layout>
       </div>
     );
