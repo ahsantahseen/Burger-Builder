@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import OrderSummary from "../../Components/Order/OrderSummary/OrderSummary";
+import CheckoutSummary from "../../Components/Order/CheckoutSummary/CheckoutSummary";
 import { withRouter } from "react-router-dom";
 
 class Checkout extends Component {
@@ -14,7 +14,7 @@ class Checkout extends Component {
   render() {
     return (
       <div>
-        <OrderSummary ingredients={this.state.ingredients}></OrderSummary>
+        <CheckoutSummary ingredients={this.state.ingredients}></CheckoutSummary>
       </div>
     );
   }
