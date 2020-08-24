@@ -9,7 +9,13 @@ const OrderSummary = (props) => {
       <div style={{ width: "300px", height: "300px", margin: "auto" }}>
         <Burger ingredients={props.ingredients}></Burger>
       </div>
-      <Button>CANCEL</Button>
+      <Button Btntype="Danger" clicked>
+        CANCEL
+      </Button>
+
+      <Button Btntype="Success" clicked>
+        Continue
+      </Button>
     </div>
   );
 };
