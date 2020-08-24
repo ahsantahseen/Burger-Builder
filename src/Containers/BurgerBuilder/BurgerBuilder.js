@@ -9,17 +9,6 @@ import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import axios from "../../orders-axios";
 import { withRouter } from "react-router-dom";
 
-const dummy_names = ["Ali", "Amin", "Bilal", "Ahsan", "Tahseen", "Tabassum"];
-const dummy_location = [
-  "Karachi-FB AREA",
-  "Karachi-Saddar",
-  "Karachi-Clifton",
-  "Karachi-PECHS",
-  "Karachi-Nursery",
-];
-const dummy_numbers = ["052523", "525251", "145523", "123453", "435355"];
-
-const dummy_delivery_type = ["Fastest", "Normal", "Urgent", "Casual"];
 const INGREDIENTS_PRICE = {
   salad: 0.3,
   cheese: 0.5,
@@ -56,29 +45,6 @@ class BurgerBuilder extends Component {
   };
 
   continuePurchasing = () => {
-    // this.setState({ loading: true });
-    // const customerOrders = {
-    //   ingredients: this.state.Ingredients,
-    //   Total_Price: this.state.Total_Price + "$",
-    //   customer_details: {
-    //     name: dummy_names[Math.floor(Math.random() * dummy_names.length)],
-    //     location:
-    //       dummy_location[Math.floor(Math.random() * dummy_location.length)],
-    //     contact_number:
-    //       dummy_numbers[Math.floor(Math.random() * dummy_numbers.length)],
-    //   },
-
-    //   delivery_type:
-    //     dummy_delivery_type[
-    //       Math.floor(Math.random() * dummy_delivery_type.length)
-    //     ],
-    //   delivery_date: this.state.Date,
-    // };
-
-    // axios
-    //   .post("customerOrders.json", customerOrders)
-    //   .then((Response) => this.setState({ loading: false, purchasing: false }))
-    //   .catch((error) => this.setState({ loading: false, purchasing: false }));
     const QueryParams = [];
     for (let i in this.state.Ingredients) {
       QueryParams.push(
@@ -87,6 +53,8 @@ class BurgerBuilder extends Component {
           encodeURIComponent(this.state.Ingredients[i])
       );
     }
+    QueryParams.push("total-price=" + this.state.Total_Price);
+    QueryParams.push("order-data=" + this.state.Date);
     const QueryString = QueryParams.join("&");
     this.props.history.push({
       pathname: "/checkout",

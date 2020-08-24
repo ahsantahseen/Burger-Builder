@@ -10,6 +10,8 @@
 }
 .Input {
   display: block;
+  padding: 10px;
+  margin: 20px;
 }
 @media (min-width: 600px) {
   .contact_data {
