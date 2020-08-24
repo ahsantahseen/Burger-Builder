@@ -3,7 +3,6 @@ import CheckoutSummary from "../../Components/Order/CheckoutSummary/CheckoutSumm
 import { withRouter } from "react-router-dom";
 
 class Checkout extends Component {
-  
   state = {
     ingredients: {
       salad: 1,
@@ -12,7 +11,13 @@ class Checkout extends Component {
     },
   };
   componentDidMount() {
-   const query 
+    const query = new URLSearchParams(this.props.location.search);
+    const ingredients = {};
+    for (let param of query.entries()) {
+      //["meat","1"]
+      ingredients[param[0]] = +param[1];
+    }
+    this.setState({ ingredients: ingredients });
   }
   checkoutCancelledHandler = () => {
     this.props.history.goBack();
