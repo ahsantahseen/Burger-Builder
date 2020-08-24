@@ -1,15 +1,12 @@
 .footerbar {
-  position: fixed;
-  flex-direction: column;
-  min-width: 100%;
-  align-items: center;
-  align-content: center;
+  position: relative;
   left: 0;
   bottom: 0;
-  height: 50px;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   text-align: center;
   color: white;
+  padding: 5px;
 }
 .footerbar-content {
   flex: 1;
@@ -18,7 +15,6 @@
   .footerbar {
     display: flex;
     flex-direction: column;
-    min-width: 100vh;
   }
   .footerbar-content {
     flex: 1;
