@@ -22,13 +22,14 @@ class App extends Component {
         <Layout>
           <Switch>
             <Route
-              to="/"
+              path="/"
               exact
-              component={
+              render={() =>
                 this.state.show ? <BurgerBuilder></BurgerBuilder> : <Spinner />
               }
-            ></Route>
-            <Route to="/checkout" exact component={Checkout}></Route>
+            />
+
+            <Route path="/checkout" component={Checkout}></Route>
           </Switch>
         </Layout>
       </div>
