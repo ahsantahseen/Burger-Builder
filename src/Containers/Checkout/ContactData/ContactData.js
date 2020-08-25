@@ -49,7 +49,7 @@ class ContactData extends Component {
       .post("customerOrders.json", customerOrders)
       .then(
         (Response) => this.setState({ loading: false, purchasing: false }),
-        this.props.history.push("/")
+        this.props.history.push("/orders")
       )
       .catch((error) => this.setState({ loading: false, purchasing: false }));
   };
