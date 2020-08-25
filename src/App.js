@@ -5,6 +5,7 @@ import BurgerBuilder from "../src/Containers/BurgerBuilder/BurgerBuilder";
 import Spinner from "./Components/UI/Spinnner/Spinner";
 import Checkout from "./Containers/Checkout/Checkout";
 import { Route, Switch } from "react-router-dom";
+import Orders from "./Containers/Orders/Orders"
 
 class App extends Component {
   state = {
@@ -28,8 +29,9 @@ class App extends Component {
                 this.state.show ? <BurgerBuilder></BurgerBuilder> : <Spinner />
               }
             />
-
+            
             <Route path="/checkout" component={Checkout}></Route>
+            <Route path="/orders" component={Orders}></Route>
           </Switch>
         </Layout>
       </div>
