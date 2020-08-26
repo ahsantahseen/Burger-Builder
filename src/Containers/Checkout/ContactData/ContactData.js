@@ -68,6 +68,10 @@ class ContactData extends Component {
       .catch((error) => this.setState({ loading: false, purchasing: false }));
   };
   render() {
+    const formElementsArray=[];
+    for(let key in this.state.orderForm){
+    
+    }
     let form = (
       <form>
         <Input elementType="" elementConfig="" value=""></Input>
