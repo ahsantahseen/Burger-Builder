@@ -2,8 +2,6 @@ import React from "react";
 import classes from "./Input.module.css";
 
 const Input = (props) => {
-  const arr = props.options;
-  console.log(arr);
   let inputElement = null;
   switch (props.inputtype) {
     case "input":
@@ -20,8 +18,12 @@ const Input = (props) => {
     case "drop-down":
       inputElement = (
         <select {...props} className={classes.InputElement}>
-          {arr.map((elem) => {
-            return <option value={elem} key={elem}>{elem}</option>;
+          {props.options.map((elem) => {
+            return (
+              <option value={elem} key={elem}>
+                {elem}
+              </option>
+            );
           })}
         </select>
       );

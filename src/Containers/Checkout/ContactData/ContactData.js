@@ -78,7 +78,6 @@ class ContactData extends Component {
           inputtype="drop-down"
           label="Delivery Type"
           options={dummy_delivery_type}
-          placeholder="Select Delivery Type"
           name="delivery-type"
         ></Input>
         <Button Btntype="Success" clicked={(event) => this.orderSubmit(event)}>

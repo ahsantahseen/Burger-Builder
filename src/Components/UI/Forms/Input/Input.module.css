@@ -16,6 +16,7 @@
   width: 100%;
   display: block;
   padding: 6px 10px;
+  box-sizing: border-box;
 }
 .InputElement:focus {
   outline: none;
