@@ -16,6 +16,11 @@ class ContactData extends Component {
           placeholder: "Your Name",
         },
         value: "",
+
+        validation: {
+          required: true,
+          valid: false,
+        },
       },
       location: {
         elementType: "input",
@@ -24,6 +29,10 @@ class ContactData extends Component {
           placeholder: "Your Location",
         },
         value: "",
+        validation: {
+          required: true,
+          valid: false,
+        },
       },
 
       contact_number: {
@@ -33,12 +42,17 @@ class ContactData extends Component {
           placeholder: "Your Phone Number",
         },
         value: "",
+        validation: {
+          required: true,
+          valid: false,
+        },
       },
 
       delivery_type: {
         elementType: "select",
         elementConfig: {
           options: [
+            { value: "", displayValue: "Select Any Option" },
             { value: "Fastest", displayValue: "Fastest" },
 
             { value: "Normal", displayValue: "Normal" },
@@ -53,11 +67,18 @@ class ContactData extends Component {
   orderSubmit = (event) => {
     event.preventDefault();
     this.setState({ loading: true });
+    const FormData = {};
+    for (let formDataElementIdentifier in this.state.orderForm) {
+      FormData[formDataElementIdentifier] = this.state.orderForm[
+        formDataElementIdentifier
+      ].value;
+    }
     const customerOrders = {
       ingredients: this.props.ingredients,
       Total_Price: this.props.price + "$",
 
       delivery_date: this.props.date,
+      orderData: FormData,
     };
 
     axios
@@ -79,6 +100,13 @@ class ContactData extends Component {
     UpdatedForm[InputIdentifier] = UpdatedFormElement;
     this.setState({ orderForm: UpdatedForm });
   };
+  checkValidity(value, rules) {
+    let isValid = false;
+    if (rules.required) {
+      isValid = value.trim() !== "";
+    }
+    return isValid;
+  }
   render() {
     const formElementsArray = [];
     for (let key in this.state.orderForm) {
