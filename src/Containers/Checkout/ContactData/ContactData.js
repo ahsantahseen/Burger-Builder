@@ -4,6 +4,8 @@ import Button from "../../../Components/UI/Button/Button";
 import classes from "./ContactData.module.css";
 import axios from "../../../orders-axios";
 import Spinner from "../../../Components/UI/Spinnner/Spinner";
+import Input from "../../../Components/UI/Forms/Input/Input";
+
 const dummy_names = ["Ali", "Amin", "Bilal", "Ahsan", "Tahseen", "Tabassum"];
 const dummy_location = [
   "Karachi-FB AREA",
@@ -56,21 +58,29 @@ class ContactData extends Component {
   render() {
     let form = (
       <form>
-        <input
-          title="name"
-          className={classes.Input}
+        <Input inputtype="input" label="Name" type="text" name="name"></Input>
+
+        <Input
+          inputtype="input"
+          label="Contact Number"
           type="text"
           name="name"
-          placeholder="your Name"
-        ></input>
+        ></Input>
 
-        <input
-          title="email"
-          className={classes.Input}
-          type="email"
-          name="email"
-          placeholder="your Email"
-        ></input>
+        <Input
+          inputtype="input"
+          label="Location"
+          type="text"
+          name="name"
+        ></Input>
+
+        <Input
+          inputtype="drop-down"
+          label="Delivery Type"
+          options={dummy_delivery_type}
+          placeholder="Select Delivery Type"
+          name="delivery-type"
+        ></Input>
         <Button Btntype="Success" clicked={(event) => this.orderSubmit(event)}>
           Order
         </Button>

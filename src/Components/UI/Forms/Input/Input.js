@@ -2,8 +2,10 @@ import React from "react";
 import classes from "./Input.module.css";
 
 const Input = (props) => {
+  const arr = props.options;
+  console.log(arr);
   let inputElement = null;
-  switch (props.InputType) {
+  switch (props.inputtype) {
     case "input":
       inputElement = (
         <input {...props} className={classes.InputElement}></input>
@@ -15,6 +17,15 @@ const Input = (props) => {
       );
       break;
 
+    case "drop-down":
+      inputElement = (
+        <select {...props} className={classes.InputElement}>
+          {arr.map((elem) => {
+            return <option value={elem} key={elem}>{elem}</option>;
+          })}
+        </select>
+      );
+      break;
     default:
       inputElement = (
         <input {...props} className={classes.InputElement}></input>
