@@ -79,8 +79,6 @@ class ContactData extends Component {
         properties: this.state.orderForm[key],
       });
     }
-    console.log(formElementsArray);
-    console.log(formElementsArray[0].properties.elementType);
     let form = (
       <form>
         {formElementsArray.map((formElement) => {
