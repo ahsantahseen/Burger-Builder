@@ -60,6 +60,10 @@ class ContactData extends Component {
             { value: "Normal", displayValue: "Normal" },
           ],
         },
+        validation: {
+          required: true,
+          valid: true,
+        },
       },
     },
     loading: false,
@@ -133,17 +137,19 @@ class ContactData extends Component {
     let form = (
       <form>
         {formElementsArray.map((formElement) => {
+          console.log(formElement.properties.validation);
           return (
             <Input
               key={formElement.id}
               elementtype={formElement.properties.elementType}
               elementconfig={formElement.properties.elementConfig}
               value={formElement.properties.value}
+              shouldValidate={formElement.properties.validation}
+              invalid={!formElement.properties.valid}
               options={formElement.properties.elementConfig.options}
               onChangeHandler={(event) =>
                 this.inputChangedHandler(event, formElement.id)
               }
-              invalid={!formElement.properties.valid}
             ></Input>
           );
         })}

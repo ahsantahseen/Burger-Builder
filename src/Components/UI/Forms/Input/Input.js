@@ -4,9 +4,9 @@ import classes from "./Input.module.css";
 const Input = (props) => {
   let inputElement = null;
   const inputClasses = [classes.InputElement];
-  if (props.invalid) {
+  if (props.invalid && props.shouldValidate) {
     inputClasses.push(classes.Invalid);
-  }
+  } 
   switch (props.elementtype) {
     case "input":
       inputElement = (
