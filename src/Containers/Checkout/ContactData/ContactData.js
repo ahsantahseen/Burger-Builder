@@ -68,7 +68,7 @@ class ContactData extends Component {
       )
       .catch((error) => this.setState({ loading: false, purchasing: false }));
   };
-  inputChangedHandler = (event) => {
+  inputChangedHandler = (event, InputIdentifier) => {
     console.log(event.target.value);
   };
   render() {
@@ -91,7 +91,9 @@ class ContactData extends Component {
               elementconfig={formElement.properties.elementConfig}
               value={formElement.properties.value}
               options={formElement.properties.elementConfig.options}
-              onChangeHandler={this.inputChangedHandler}
+              onChangeHandler={(event) =>
+                this.inputChangedHandler(event, formElement.id)
+              }
             ></Input>
           );
         })}
