@@ -20,8 +20,19 @@ const dummy_delivery_type = ["Fastest", "Normal", "Urgent", "Casual"];
 
 class ContactData extends Component {
   state = {
-    name: "",
-    email: "",
+    orderForm: {
+      name: dummy_names[Math.floor(Math.random() * dummy_names.length)],
+      location:
+        dummy_location[Math.floor(Math.random() * dummy_location.length)],
+      contact_number:
+        dummy_numbers[Math.floor(Math.random() * dummy_numbers.length)],
+
+      delivery_type:
+        dummy_delivery_type[
+          Math.floor(Math.random() * dummy_delivery_type.length)
+        ],
+      delivery_date: this.props.date,
+    },
     loading: false,
     purchasing: true,
   };
@@ -32,19 +43,6 @@ class ContactData extends Component {
     const customerOrders = {
       ingredients: this.props.ingredients,
       Total_Price: this.props.price + "$",
-      customer_details: {
-        name: dummy_names[Math.floor(Math.random() * dummy_names.length)],
-        location:
-          dummy_location[Math.floor(Math.random() * dummy_location.length)],
-        contact_number:
-          dummy_numbers[Math.floor(Math.random() * dummy_numbers.length)],
-      },
-
-      delivery_type:
-        dummy_delivery_type[
-          Math.floor(Math.random() * dummy_delivery_type.length)
-        ],
-      delivery_date: this.props.date,
     };
 
     axios
