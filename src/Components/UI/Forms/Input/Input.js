@@ -1,11 +1,24 @@
-import React from 'react'
+import React from "react";
 
-const Input = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+const Input = (props) => {
+  let inputElement = null;
+  switch (props.InputType) {
+    case "input":
+      inputElement = <input {...props}></input>;
+      break;
+    case "textarea":
+      inputElement = <textarea {...props}></textarea>;
+      break;
 
-export default Input
+    default:
+      inputElement = <input {...props}></input>;
+      break;
+  }
+  return (
+    <div>
+      <label>{props.label}</label>
+    </div>
+  );
+};
+
+export default Input;
