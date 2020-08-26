@@ -6,31 +6,45 @@ import axios from "../../../orders-axios";
 import Spinner from "../../../Components/UI/Spinnner/Spinner";
 import Input from "../../../Components/UI/Forms/Input/Input";
 
-const dummy_names = ["Ali", "Amin", "Bilal", "Ahsan", "Tahseen", "Tabassum"];
-const dummy_location = [
-  "Karachi-FB AREA",
-  "Karachi-Saddar",
-  "Karachi-Clifton",
-  "Karachi-PECHS",
-  "Karachi-Nursery",
-];
-const dummy_numbers = ["052523", "525251", "145523", "123453", "435355"];
-
-const dummy_delivery_type = ["Fastest", "Normal", "Urgent", "Casual"];
-
 class ContactData extends Component {
   state = {
     orderForm: {
-      name: dummy_names[Math.floor(Math.random() * dummy_names.length)],
-      location:
-        dummy_location[Math.floor(Math.random() * dummy_location.length)],
-      contact_number:
-        dummy_numbers[Math.floor(Math.random() * dummy_numbers.length)],
+      name: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Name",
+        },
+        value: "",
+      },
+      location: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Location",
+        },
+        value: "",
+      },
 
-      delivery_type:
-        dummy_delivery_type[
-          Math.floor(Math.random() * dummy_delivery_type.length)
-        ],
+      contact_number: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Phone Number",
+        },
+        value: "",
+      },
+
+      delivery_type: {
+        elementType: "drop-down",
+        elementConfig: {
+          options: [
+            { value: "Fastest", displayValue: "Fastest" },
+
+            { value: "Normal", displayValue: "Normal" },
+          ],
+        },
+      },
       delivery_date: this.props.date,
     },
     loading: false,
@@ -56,28 +70,13 @@ class ContactData extends Component {
   render() {
     let form = (
       <form>
-        <Input inputtype="input" label="Name" type="text" name="name"></Input>
+        <Input elementType="" elementConfig="" value=""></Input>
 
-        <Input
-          inputtype="input"
-          label="Contact Number"
-          type="text"
-          name="name"
-        ></Input>
+        <Input></Input>
 
-        <Input
-          inputtype="input"
-          label="Location"
-          type="text"
-          name="name"
-        ></Input>
+        <Input></Input>
 
-        <Input
-          inputtype="drop-down"
-          label="Delivery Type"
-          options={dummy_delivery_type}
-          name="delivery-type"
-        ></Input>
+        <Input></Input>
         <Button Btntype="Success" clicked={(event) => this.orderSubmit(event)}>
           Order
         </Button>
