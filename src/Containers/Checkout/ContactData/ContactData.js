@@ -36,7 +36,7 @@ class ContactData extends Component {
       },
 
       delivery_type: {
-        elementType: "drop-down",
+        elementType: "select",
         elementConfig: {
           options: [
             { value: "Fastest", displayValue: "Fastest" },
@@ -45,7 +45,6 @@ class ContactData extends Component {
           ],
         },
       },
-      delivery_date: this.props.date,
     },
     loading: false,
     purchasing: true,
@@ -57,6 +56,8 @@ class ContactData extends Component {
     const customerOrders = {
       ingredients: this.props.ingredients,
       Total_Price: this.props.price + "$",
+
+      delivery_date: this.props.date,
     };
 
     axios
@@ -68,19 +69,27 @@ class ContactData extends Component {
       .catch((error) => this.setState({ loading: false, purchasing: false }));
   };
   render() {
-    const formElementsArray=[];
-    for(let key in this.state.orderForm){
-    
+    const formElementsArray = [];
+    for (let key in this.state.orderForm) {
+      formElementsArray.push({
+        id: key,
+        properties: this.state.orderForm[key],
+      });
     }
+    console.log(formElementsArray);
+    console.log(formElementsArray[0].properties.elementType);
     let form = (
       <form>
-        <Input elementType="" elementConfig="" value=""></Input>
-
-        <Input></Input>
-
-        <Input></Input>
-
-        <Input></Input>
+        {formElementsArray.map((formElement) => {
+          return (
+            <Input
+              elementtype={formElement.properties.elementType}
+              elementconfig={formElement.properties.elementConfig}
+              value={formElement.properties.value}
+              options={formElement.properties.elementConfig.options}
+            ></Input>
+          );
+        })}
         <Button Btntype="Success" clicked={(event) => this.orderSubmit(event)}>
           Order
         </Button>
