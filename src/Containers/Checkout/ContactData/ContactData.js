@@ -20,6 +20,8 @@ class ContactData extends Component {
         validation: {
           required: true,
           valid: false,
+
+          validationMessage: "Please enter your name correctly",
         },
       },
       location: {
@@ -32,6 +34,8 @@ class ContactData extends Component {
         validation: {
           required: true,
           valid: false,
+
+          validationMessage: "Please enter your location correctly",
         },
       },
 
@@ -45,8 +49,10 @@ class ContactData extends Component {
         validation: {
           required: true,
           valid: false,
-          minLength: 8,
-          maxLength: 8,
+          minLength: 9,
+          maxLength: 12,
+
+          validationMessage: "Please enter a valid number ",
         },
       },
 
@@ -63,6 +69,7 @@ class ContactData extends Component {
         validation: {
           required: true,
           valid: false,
+          validationMessage: "Please select a valid option",
         },
       },
     },
@@ -121,6 +128,7 @@ class ContactData extends Component {
       UpdatedFormElement.value,
       UpdatedFormElement.validation
     );
+    UpdatedFormElement.touched = true;
     UpdatedForm[InputIdentifier] = UpdatedFormElement;
     console.log(UpdatedFormElement.valid);
     this.setState({ orderForm: UpdatedForm });
@@ -146,7 +154,11 @@ class ContactData extends Component {
               value={formElement.properties.value}
               shouldValidate={formElement.properties.validation}
               invalid={!formElement.properties.valid}
+              touched={formElement.properties.touched}
               options={formElement.properties.elementConfig.options}
+              validationMessage={
+                formElement.properties.validation.validationMessage
+              }
               onChangeHandler={(event) =>
                 this.inputChangedHandler(event, formElement.id)
               }
