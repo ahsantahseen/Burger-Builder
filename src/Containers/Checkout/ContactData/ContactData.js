@@ -69,7 +69,15 @@ class ContactData extends Component {
       .catch((error) => this.setState({ loading: false, purchasing: false }));
   };
   inputChangedHandler = (event, InputIdentifier) => {
-    console.log(event.target.value);
+    const UpdatedForm = {
+      ...this.state.orderForm,
+    };
+    const UpdatedFormElement = {
+      ...UpdatedForm[InputIdentifier],
+    };
+    UpdatedFormElement.value = event.target.value;
+    UpdatedForm[InputIdentifier] = UpdatedFormElement;
+    this.setState({ orderForm: UpdatedForm });
   };
   render() {
     const formElementsArray = [];
