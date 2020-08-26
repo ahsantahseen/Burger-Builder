@@ -143,6 +143,7 @@ class ContactData extends Component {
               onChangeHandler={(event) =>
                 this.inputChangedHandler(event, formElement.id)
               }
+              invalid={!formElement.properties.valid}
             ></Input>
           );
         })}
