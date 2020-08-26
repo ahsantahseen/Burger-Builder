@@ -45,6 +45,8 @@ class ContactData extends Component {
         validation: {
           required: true,
           valid: false,
+          minLength: 8,
+          maxLength: 8,
         },
       },
 
@@ -89,6 +91,20 @@ class ContactData extends Component {
       )
       .catch((error) => this.setState({ loading: false, purchasing: false }));
   };
+  checkValidity(value, rules) {
+    let isValid = false;
+    if (rules.required) {
+      isValid = value.trim() !== "";
+    }
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength;
+    }
+    if (rules.maxLength) {
+      isValid = value.length <= rules.maxLength;
+    }
+
+    return isValid;
+  }
   inputChangedHandler = (event, InputIdentifier) => {
     const UpdatedForm = {
       ...this.state.orderForm,
@@ -97,17 +113,15 @@ class ContactData extends Component {
       ...UpdatedForm[InputIdentifier],
     };
     UpdatedFormElement.value = event.target.value;
-    UpdatedFormElement.valid = this.checkValidity(UpdatedFormElement.value,UpdatedFormElement.validation);
+    UpdatedFormElement.valid = this.checkValidity(
+      UpdatedFormElement.value,
+      UpdatedFormElement.validation
+    );
     UpdatedForm[InputIdentifier] = UpdatedFormElement;
+    console.log(UpdatedFormElement.valid);
     this.setState({ orderForm: UpdatedForm });
   };
-  checkValidity(value, rules) {
-    let isValid = false;
-    if (rules.required) {
-      isValid = value.trim() !== "";
-    }
-    return isValid;
-  }
+
   render() {
     const formElementsArray = [];
     for (let key in this.state.orderForm) {
