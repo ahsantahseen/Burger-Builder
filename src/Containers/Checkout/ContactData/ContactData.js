@@ -62,7 +62,7 @@ class ContactData extends Component {
         },
         validation: {
           required: true,
-          valid: true,
+          valid: false,
         },
       },
     },
