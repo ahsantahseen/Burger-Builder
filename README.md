@@ -1,3 +1,5 @@
+#Burger Builder
+
 ### How to use? (make sure you have node installed).
 
 1.) Download the whole folder, extract it and then open the folder containing the files.
