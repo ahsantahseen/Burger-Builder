@@ -1,4 +1,6 @@
-# Burger Builder
+# Burger Builder 
+
+<a href="ahsanburgerbuilder.surge.sh">Use the app</a>
 
 ### How to use? (make sure you have node installed).
 
