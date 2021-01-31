@@ -16,7 +16,7 @@ export const AuthProvider = ({children}) => {
     const Login=(email,password)=>{
         return(auth.signInWithEmailAndPassword(email,password))
     }
-    const Logout=()=>{
+        const Logout=()=>{
         return(auth.signOut())
     }
     const passwordreset=(email)=>{

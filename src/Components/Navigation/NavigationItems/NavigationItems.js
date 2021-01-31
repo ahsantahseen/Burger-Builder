@@ -30,9 +30,7 @@ const handleLogout=async()=>{
       </NavigationItem>
       <NavigationItem link="/orders">Orders</NavigationItem>
       <div className={classes.NavigationItem} onClick={handleLogout}>Logout</div>
-      
-      <NavigationItem link="/update-profile">Update Profile</NavigationItem>
-      
+      <NavigationItem link="/update-profile">Update Profile</NavigationItem>  
     </ul>
   );
 };

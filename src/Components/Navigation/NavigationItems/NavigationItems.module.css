@@ -5,7 +5,7 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  height: 100%;
+  height: auto;
 }
 
 .NavigationItem {
@@ -43,7 +43,7 @@
   .NavigationItem:active,
   .NavigationItem.active {
     background-color: #8f5c2c;
-    border-bottom: 4px solid #40a4c8;
+    border-bottom: 4px solid #eb350c;
     color: white;
   }
 }
