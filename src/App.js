@@ -4,8 +4,14 @@ import Layout from "../src/Components/Layout/Layout";
 import BurgerBuilder from "../src/Containers/BurgerBuilder/BurgerBuilder";
 import Spinner from "./Components/UI/Spinnner/Spinner";
 import Checkout from "./Containers/Checkout/Checkout";
-import { Route, Switch } from "react-router-dom";
+import {BrowserRouter as Router , Switch, Route, Redirect} from "react-router-dom";
 import Orders from "./Containers/Orders/Orders"
+import Privateroute from "./Components/PrivateRoutes/Privateroute"
+import Login from "./Containers/Login/Login"
+import {AuthProvider} from "./Contexts/AuthContext"
+import Signup from "./Containers/SignUp/Signup"
+import ForgotPassword from "./Containers/ForgotPassword/ForgotPassword"
+import UpdateProfile from "./Containers/UpdateProfile/UpdateProfile"
 
 class App extends Component {
   state = {
@@ -20,20 +26,36 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Layout>
+        
+        <Router>  
+        <AuthProvider>
           <Switch>
-            <Route
+          
+        <Route path="/login" component={Login}></Route>
+        
+        <Route path="/signup" component={Signup}></Route>
+        
+        <Route path="/forgot-password" component={ForgotPassword}></Route>
+        
+        <Layout>
+            <Privateroute
               path="/"
               exact
-              render={() =>
+              component={routeProps =>(
                 this.state.show ? <BurgerBuilder></BurgerBuilder> : <Spinner />
-              }
-            />
+              )}
+            >
+            </Privateroute>
+            <Privateroute path="/checkout" component={Checkout}></Privateroute>
+            <Privateroute path="/orders" component={Orders}></Privateroute>
+            <Privateroute path="/update-profile" component={UpdateProfile}></Privateroute>
             
-            <Route path="/checkout" component={Checkout}></Route>
-            <Route path="/orders" component={Orders}></Route>
+            </Layout>
+            
           </Switch>
-        </Layout>
+          </AuthProvider>
+          </Router>
+        
       </div>
     );
   }
