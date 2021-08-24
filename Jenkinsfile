@@ -11,7 +11,7 @@ node {
     }
     steps {
         withSonarQubeEnv(installationName: 'SonarQube') {
-            sh "${scannerHome}/bin/sonar-scanner -X"
+            bat "${scannerHome}/bin/sonar-scanner -X"
         }
     }
   }
