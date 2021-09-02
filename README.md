@@ -8,7 +8,7 @@
 <br>
 2.) Once you open the folder, run cmd and type "npm install".
 <br>
-3.) Once you've installed the app, type "npm start" and it should start on your local network and availiable via Browser. 
+3.) Once you've installed the app, type "npm start" and it should start on your local network and availiable via Browser
 
 ### Screenshots 
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/bHhk806/burger-Builder1.jpg" alt="burger-Builder1" border="0"></a>
